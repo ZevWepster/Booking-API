@@ -1,4 +1,3 @@
-// prisma/seed.js
 import { PrismaClient } from "@prisma/client";
 import amenitiesData from "../src/data/amenities.json" assert { type: "json" };
 import bookingsData from "../src/data/bookings.json" assert { type: "json" };
@@ -11,8 +10,6 @@ const prisma = new PrismaClient({ log: ["query", "info", "warn", "error"] });
 
 async function main() {
   try {
-    // Get the actual arrays from your JSON files
-    // Based on your example, your JSON files seem to have this structure
     const amenities = amenitiesData.amenities || amenitiesData;
     const bookings = bookingsData.bookings || bookingsData;
     const hosts = hostsData.hosts || hostsData;
@@ -20,7 +17,6 @@ async function main() {
     const reviews = reviewsData.reviews || reviewsData;
     const users = usersData.users || usersData;
 
-    // Seed Amenities
     console.log("Seeding amenities...");
     for (const amenity of amenities) {
       await prisma.amenity.upsert({
@@ -33,7 +29,6 @@ async function main() {
       });
     }
 
-    // Seed Hosts
     console.log("Seeding hosts...");
     for (const host of hosts) {
       await prisma.host.upsert({
@@ -52,7 +47,6 @@ async function main() {
       });
     }
 
-    // Seed Users
     console.log("Seeding users...");
     for (const user of users) {
       await prisma.user.upsert({
@@ -70,7 +64,6 @@ async function main() {
       });
     }
 
-    // Seed Properties
     console.log("Seeding properties...");
     for (const property of properties) {
       await prisma.property.upsert({
@@ -91,7 +84,6 @@ async function main() {
       });
     }
 
-    // Seed Bookings
     console.log("Seeding bookings...");
     for (const booking of bookings) {
       await prisma.booking.upsert({
@@ -110,7 +102,6 @@ async function main() {
       });
     }
 
-    // Seed Reviews
     console.log("Seeding reviews...");
     for (const review of reviews) {
       await prisma.review.upsert({
@@ -133,7 +124,6 @@ async function main() {
   }
 }
 
-// Execute the main function then disconnect
 main()
   .then(async () => {
     await prisma.$disconnect();

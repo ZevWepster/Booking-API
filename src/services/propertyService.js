@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-// getAllProperties
 export async function getAllProperties(req, res, next) {
   try {
     const { location, pricePerNight, amenities } = req.query;
@@ -84,8 +83,6 @@ export async function createProperty(req, res, next) {
   }
 }
 
-// getPropertyById
-
 export async function getPropertyById(req, res, next) {
   try {
     const property = await prisma.property.findUnique({
@@ -98,8 +95,6 @@ export async function getPropertyById(req, res, next) {
     next(err);
   }
 }
-
-// updateProperty
 
 export async function updateProperty(req, res, next) {
   try {
@@ -148,8 +143,6 @@ export async function updateProperty(req, res, next) {
     }
   }
 }
-
-// deleteProperty
 
 export async function deleteProperty(req, res, next) {
   try {

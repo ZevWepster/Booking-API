@@ -48,11 +48,9 @@ export async function createHost(req, res, next) {
 
     // Validate required fields
     if (!username || !password || !email) {
-      return res
-        .status(400)
-        .json({
-          error: "Missing required fields: username, password, or email",
-        });
+      return res.status(400).json({
+        error: "Missing required fields: username, password, or email",
+      });
     }
 
     const host = await prisma.host.create({
@@ -80,11 +78,11 @@ export async function updateHost(req, res, next) {
     });
     res.status(200).json(updated);
   } catch (err) {
-    console.error("Error updating host:", err); // Log the error
+    console.error("Error updating host:", err);
     if (err.code === "P2025") {
       res.status(404).json({ error: "Host not found" });
     } else {
-      res.status(500).json({ error: "Internal Server Error" }); // Handle unexpected errors
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }
@@ -94,11 +92,11 @@ export async function deleteHost(req, res, next) {
     await prisma.host.delete({ where: { id: req.params.id } });
     res.status(200).json({ message: "Host deleted" });
   } catch (err) {
-    console.error("Error deleting host:", err); // Log the error
+    console.error("Error deleting host:", err);
     if (err.code === "P2025") {
       res.status(404).json({ error: "Host not found" });
     } else {
-      res.status(500).json({ error: "Internal Server Error" }); // Handle unexpected errors
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }

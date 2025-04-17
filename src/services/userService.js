@@ -1,6 +1,4 @@
-// services/userService.js
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 export async function getAllUsers(req, res, next) {
@@ -55,11 +53,9 @@ export async function createUser(req, res, next) {
 
     // Validate required fields
     if (!username || !email || !password || !name) {
-      return res
-        .status(400)
-        .json({
-          error: "Missing required fields: username, email, password, or name",
-        });
+      return res.status(400).json({
+        error: "Missing required fields: username, email, password, or name",
+      });
     }
 
     const user = await prisma.user.create({
