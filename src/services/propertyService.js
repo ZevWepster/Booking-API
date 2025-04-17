@@ -45,6 +45,7 @@ export async function createProperty(req, res, next) {
       bathRoomCount,
       maxGuestCount,
       rating,
+      host,
     } = req.body;
 
     // Validate required fields
@@ -73,6 +74,7 @@ export async function createProperty(req, res, next) {
         bathRoomCount,
         maxGuestCount,
         rating,
+        host,
       },
     });
     res.status(201).json(property);
@@ -111,6 +113,7 @@ export async function updateProperty(req, res, next) {
       maxGuestCount,
       rating,
       amenities,
+      host,
     } = req.body;
 
     // Validate amenities
@@ -131,6 +134,7 @@ export async function updateProperty(req, res, next) {
         bathRoomCount,
         maxGuestCount,
         rating,
+        host,
       },
       include: { amenities: true },
     });
